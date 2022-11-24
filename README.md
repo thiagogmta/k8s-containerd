@@ -1,4 +1,4 @@
-# K8s com Kubeadm e containerd provisionado via Vagrant e Ansible
+# K8s com Kubeadm e Containerd Provisionado via Vagrant e Ansible
 
 Thiago Guimarães Tavares   
 thiagogmta@ifto.edu.br
@@ -60,15 +60,48 @@ $ cd k8s-containerd
 $ vagrant up
 ```
 
-Acessando o ambiente
+Ao final do deploy teremos a seguintes mensagem:
 
 ```bash
-$ vagrant ssh
+PLAY RECAP *********************************************************************
+k8s-node2                  : ok=16   changed=15   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
 ```
+
+![Vagrant Up](/img/vagrantup.png)
+
+Você pode verificar as Máquinas criadas com:
+
+```bash
+$ vagrant status
+
+Current machine states:
+
+k8s-master                running (virtualbox)
+k8s-node1                 running (virtualbox)
+k8s-node2                 running (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+```
+
+Para acessar o ambiente basta utilizar o comando a seguir seguido do nome da VM que quer acessar.
+
+```bash
+$ vagrant ssh k8s-master
+```
+
+![Vagrant SSH](/img/vagrantssh.png)
+
 Verificando o cluster
 
 ```bash
-$ kubectl get pods
+$ kubectl get nodes
+
+NAME         STATUS   ROLES                  AGE     VERSION
+k8s-master   Ready    control-plane,master   12m     v1.23.0
+node1        Ready    <none>                 9m52s   v1.23.0
+node2        Ready    <none>                 6m35s   v1.23.0
 ```
 
 Enjoy! Seu cluster está pronto para receber aplicações de teste.
