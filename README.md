@@ -11,8 +11,6 @@ A partir da versão 1.20 do Kubernetes o dockershin foi descontinuado e definiti
 
 Este projeto utiliza a versão 1.23 do kubernetes adotando o **Containerd** em detrimento do **Docker**.
 
-O cluster terá um Master Node e dois Worker Nodes onde cada nó demanda 2gb de memória ram.
-
 ## Vagrant e Ansible
 
 **Vagrant** é uma ferramenta que automatiza a criação de máquinas virtuais. O vagrant irá criar três VM`s com ubuntu server:
@@ -53,7 +51,9 @@ Clone este repositório:
 git clone https://github.com/thiagogmta/k8s-containerd.git
 ```
 
-Iniciando o ambiente com vagrant
+**Iniciando o ambiente com Vagrant**
+
+Acesse o diretório do repo e crie a infraestrutura com:
 
 ```bash
 $ cd k8s-containerd
@@ -66,6 +66,8 @@ Ao final do deploy teremos a seguintes mensagem:
 PLAY RECAP *********************************************************************
 k8s-node2                  : ok=16   changed=15   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
 ```
+
+Três máquinas virtuais serão criadas no Virtualbox.
 
 ![Vagrant Up](/img/vagrantup.png)
 
@@ -85,15 +87,21 @@ above with their current state. For more information about a specific
 VM, run `vagrant status NAME`.
 ```
 
+**Acessando o Ambiente**
+
 Para acessar o ambiente basta utilizar o comando a seguir seguido do nome da VM que quer acessar.
 
 ```bash
 $ vagrant ssh k8s-master
 ```
 
+Será feito acesso a VM via SSH
+
 ![Vagrant SSH](/img/vagrantssh.png)
 
-Verificando o cluster
+**Verificando o cluster**
+
+Para verificar os nós do cluster utilize:
 
 ```bash
 $ kubectl get nodes
@@ -127,4 +135,4 @@ $ chmod 644 /etc/vbox/networks.conf
 ```
 ## Referência
 
-Esse repoistório é um fork do repositório do Lorenz Vanthillo disponível em [Vagrant-ansible-kubernetes](https://github.com/lvthillo/vagrant-ansible-kubernetes).
+Esse repoistório é um fork do repositório de Lorenz Vanthillo disponível em [Vagrant-ansible-kubernetes](https://github.com/lvthillo/vagrant-ansible-kubernetes).
